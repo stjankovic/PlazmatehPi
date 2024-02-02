@@ -61,7 +61,7 @@
                 
                     <div class="row justify-content-center"> <!-- Align everything to center -->
                         <div class="col-md-1 text-left"> <!-- Align left -->
-                          <p>Text 1</p>
+                          <p id="parameterDisplay"></p>
                           <p>Text 2</p>
                           <p>Text 3</p>
                           <p>Text 4</p>
@@ -134,7 +134,16 @@
     <script src="clock.js"></script>
     <script src="renderer.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const parameterValue = params.get('parameterName');
+        
+        // Display parameter value in <p> element
+        const parameterDisplay = document.getElementById('parameterDisplay');
+        parameterDisplay.textContent = parameterValue;
+    </script>
+
   </body>
 </body>
 </html>
