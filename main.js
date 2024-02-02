@@ -8,7 +8,9 @@ function createWindow () {
     icon: path.join(__dirname, 'favicon.png'), 
     fullscreen: true, // Start in fullscreen mode
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+        preload: path.join(__dirname, 'preload.js'),
+        nodeIntegration: false, // Disable Node.js integration
+        contextIsolation: true, // Enable context isolation
     },
     autoHideMenuBar: true, // This line hides the menu bar
     backgroundColor: '#3e3e3e'
@@ -38,7 +40,12 @@ app.whenReady().then(() => {
       createWindow()
     }
   })
-})
+}) 
+
+ipcMain.on('exit-app', () => {
+    // Quit the app
+    app.quit();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
