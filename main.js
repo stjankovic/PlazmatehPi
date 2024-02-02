@@ -1,44 +1,47 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
+const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron/main')
+const path = require('node:path')
 
-let mainWindow;
-
-function createWindow() {
-  mainWindow = new BrowserWindow({
+function createWindow () {
+  const win = new BrowserWindow({
     width: 800,
     height: 600,
     icon: path.join(__dirname, 'favicon.png'), 
     fullscreen: true, // Start in fullscreen mode
     webPreferences: {
-      nodeIntegration: true
-    }
-  });
+      preload: path.join(__dirname, 'preload.js')
+    },
+    autoHideMenuBar: true, // This line hides the menu bar
+    backgroundColor: '#3e3e3e'
+  })
 
-  // Load your HTML file
-  mainWindow.loadFile('index.html');
-
-  // Remove the menu bar
-  mainWindow.setMenu(null);
-
-  // Emitted when the window is closed
-  mainWindow.on('closed', function () {
-    mainWindow = null;
-  });
+  win.loadFile('index.html')
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-app.whenReady().then(createWindow);
+ipcMain.handle('dark-mode:toggle', () => {
+  if (nativeTheme.shouldUseDarkColors) {
+    nativeTheme.themeSource = 'light'
+  } else {
+    nativeTheme.themeSource = 'dark'
+  }
+  return nativeTheme.shouldUseDarkColors
+})
 
-// Quit when all windows are closed, except on macOS
-app.on('window-all-closed', function () {
+ipcMain.handle('dark-mode:system', () => {
+  nativeTheme.themeSource = 'system'
+})
+
+app.whenReady().then(() => {
+  createWindow()
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
+  })
+})
+
+app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit();
+    app.quit()
   }
-});
-
-app.on('activate', function () {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
-});
+})

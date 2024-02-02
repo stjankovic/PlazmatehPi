@@ -1,0 +1,53 @@
+* {
+    -webkit-user-drag: none; /* Safari/Chrome */
+    -moz-user-drag: none; /* Firefox */
+    -ms-user-drag: none; /* IE/Edge */
+    /* user-drag: none; Standard */
+}
+:root {
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    body { background: #333; color: white; }
+}
+
+@media (prefers-color-scheme: light) {
+    body { background: #ddd; color: black; }
+}
+
+body {
+    background-color: #d4d4d4; /* Light gray background color */
+  }
+
+/* Center the navbar */
+.navbar {
+    justify-content: center;
+  }
+  /* Make the logo non-draggable */
+.navbar-brand img {
+    pointer-events: none;
+}
+svg {
+    fill: black;
+    cursor: pointer;
+}
+.fixed-item {
+    position: fixed;
+    left: 25px;
+  }
+
+#hiddenWindow {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: rgba(255, 243, 243, 0.801);
+    /* border: 1px solid #ccc; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
