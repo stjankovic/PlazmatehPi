@@ -1,8 +1,27 @@
+////////////////////////////////////////////////////////////////////////////////////////////
+//SYSTEM 
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron/main')
 const path = require('node:path')
 
+////////////////////////////////////////////////////////////////////////////////////////////
+//RASPBERRY - uraditi na raspberry direktno
+
+////////////////////////////////////////////////////////////////////////////////////////////
+//PARAMETRI 
+
+////////////////////////////////////////////////////////////////////////////////////////////
+//RECEPTI 
+
+////////////////////////////////////////////////////////////////////////////////////////////
+//SETTINGS
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+//APPLICATION
+let win;
 function createWindow () {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     icon: path.join(__dirname, 'favicon.png'), 
@@ -12,25 +31,21 @@ function createWindow () {
         nodeIntegration: false, // Disable Node.js integration
         contextIsolation: true, // Enable context isolation
     },
-    autoHideMenuBar: true, // This line hides the menu bar
+    menuBarVisible: false, // Hide the menu bar
     backgroundColor: '#3e3e3e'
   })
 
-  win.loadFile('index.html')
+  win.loadFile('Strana1.html');
+
+  win.setMenuBarVisibility(false);
+
+  // Prevent menu from showing on Alt key press
+  win.on('keydown', (event) => {
+    if (event.altKey) {
+      event.preventDefault();
+    }
+  });
 }
-
-ipcMain.handle('dark-mode:toggle', () => {
-  if (nativeTheme.shouldUseDarkColors) {
-    nativeTheme.themeSource = 'light'
-  } else {
-    nativeTheme.themeSource = 'dark'
-  }
-  return nativeTheme.shouldUseDarkColors
-})
-
-ipcMain.handle('dark-mode:system', () => {
-  nativeTheme.themeSource = 'system'
-})
 
 app.whenReady().then(() => {
   createWindow()
@@ -52,3 +67,21 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+
+ipcMain.on('loadStrana1', (event) => {
+  win.loadFile('Strana1.html');
+});
+ipcMain.on('loadStrana2', (event) => {
+  win.loadFile('Strana2.html');
+});
+ipcMain.on('loadStrana3', (event) => {
+  win.loadFile('Strana3.html');
+});
+ipcMain.on('loadStrana4', (event) => {
+  win.loadFile('Strana4.html');
+});
+ipcMain.on('loadStrana5', (event) => {
+  win.loadFile('Strana5.html');
+});
+

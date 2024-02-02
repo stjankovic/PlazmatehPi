@@ -7,7 +7,7 @@ var hiddenWindow = document.getElementById('hiddenWindow');
 // Add click event listener to the SVG
 openHiddenWindowButton.addEventListener('click', function() {
   // Show the hidden window
-  hiddenWindow.style.display = 'block';
+  hiddenWindow.style.display = 'flex';
 });
 
 // Function to close the hidden window

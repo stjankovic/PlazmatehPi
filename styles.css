@@ -1,4 +1,5 @@
 * {
+    color: black !important;
     -webkit-user-drag: none; /* Safari/Chrome */
     -moz-user-drag: none; /* Firefox */
     -ms-user-drag: none; /* IE/Edge */
@@ -42,7 +43,8 @@ svg {
 .fixed-item {
     position: fixed;
     left: 25px;
-  }
+    top: 15px;
+}
 
 #hiddenWindow {
     display: none;
@@ -53,7 +55,66 @@ svg {
     height: 100%;
   
     padding: 20px;
-    background-color: rgb(201, 201, 201);
+    background-color: rgba(201, 201, 201, 0.857);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
+    
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+
+}
+#clock {
+    position: fixed;
+    top: 15px;
+    right: 50px;
+    color: black;
+    font-size: 14pt;
+    font-weight: 600;
+ 
+}
+#mainMachine {
+    color: black;
+    font-weight: 500;
+    /* background-color: red; */
+}
+#machineDisplay {
+    background-color: red;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden !important;
+  }
+
+#mainview{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+#rrow {
+    flex: 1;
+}
+li {
+    transition: background-color 0.5s ease;
+}
+li:hover {
+    cursor: pointer !important;
+    background-color: #858585;
+}
+.image-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .image-column img {
+    width: 100%;
+    height: auto;
+    max-width: none; /* Ensures the image's width can exceed its natural size */
+    max-height: none; /* Ensures the image's height can exceed its natural size */
+    width: 500px; /* Adjust the width as needed */
+    height: auto; /* Allows the height to adjust proportionally */
   }

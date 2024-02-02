@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Plazmateh IPC</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="fixed-item">
+            <svg id="openHiddenWindow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+        </div>
+        
+        <a class="navbar-brand" id="cur-dis">
+          <img src="Plazmateh.png" alt="Logo"  height="25" draggable="false">
+        </a>
+
+        <div id="clock"></div>
+    </nav>
+
+    
+    <!-- Hidden window content -->
+    <div id="hiddenWindow">
+        <div class="fixed-item">
+            <svg onclick="closeHiddenWindow();" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+            </svg>
+        </div> <!--fixed-item-->
+        <button id="exitButton" type="button" class="btn btn-danger">Exit Application</button><br>
+        <div class="">Plazmateh IPC</div>
+        <div class="">ver 01.00.</div> 
+       
+    </div>
+
+    <div id="mainview" class="container-fluid">
+      <div id="rrow" class="row">
+          <div class="col-sm-1" style="background-color: rgb(248,249,250);">
+              <!-- MENU -->
+              <ul class="list-group border-0 py-1">
+                  <li id="changeStrana1" class="list-group-item border-0 py-1 my-1">PERFORATION</li>
+                  <li id="changeStrana2" class="list-group-item border-0 py-1 my-1">PARAMETERS</li>
+                  <li id="changeStrana3" class="list-group-item border-0 py-1 my-1">RECIPES</li>
+                  <li id="changeStrana4" class="list-group-item border-0 py-1 my-1">SETTINGS</li>
+                  <li id="changeStrana5" class="list-group-item border-0 py-1 my-1">LICENSE</li>
+              </ul>
+          </div>
+          <div class="col-sm-11" style="background-color: #cccccc;">
+              <div id="mainMachine" class="container mt-5 mb-5 pb-5 text-center">
+                  <!-- GLAVNI PRIKAZ -->
+
+
+                <div id="cont" class="container rounded" style="background-color: #f8f9fa; padding: 20px;">
+                
+                    <div class="row justify-content-center"> <!-- Align everything to center -->
+                        <div class="col-md-1 text-left"> <!-- Align left -->
+                          <p>Text 1</p>
+                          <p>Text 2</p>
+                          <p>Text 3</p>
+                          <p>Text 4</p>
+                          <p>Text 5</p>
+                          <p>Text 6</p>
+                          <p>Text 7</p>
+                          <p>Text 8</p>
+                          <p>Text 9</p>
+                          <p>Text 10</p>
+                        </div>
+                        <div class="col-md-1 text-right"> <!-- Align left -->
+                          <p>Text 1</p>
+                          <p>Text 2</p>
+                          <p>Text 3</p>
+                          <p>Text 4</p>
+                          <p>Text 5</p>
+                          <p>Text 6</p>
+                          <p>Text 7</p>
+                          <p>Text 8</p>
+                          <p>Text 9</p>
+                          <p>Text 10</p>
+                        </div>
+                        <div class="col-md-6 image-column">
+                          <img src="machine.png" alt="Machine" class="img-fluid">
+                        </div>
+                        <div class="col-md-1 text-left"> <!-- Align right -->
+                          <p>Text 1</p>
+                          <p>Text 2</p>
+                          <p>Text 3</p>
+                          <p>Text 4</p>
+                          <p>Text 5</p>
+                          <p>Text 6</p>
+                          <p>Text 7</p>
+                          <p>Text 8</p>
+                          <p>Text 9</p>
+                          <p>Text 10</p>
+                        </div>
+                        <div class="col-md-1 text-right"> <!-- Align right -->
+                          <p>Text 1</p>
+                          <p>Text 2</p>
+                          <p>Text 3</p>
+                          <p>Text 4</p>
+                          <p>Text 5</p>
+                          <p>Text 6</p>
+                          <p>Text 7</p>
+                          <p>Text 8</p>
+                          <p>Text 9</p>
+                          <p>Text 10</p>
+                        </div>
+                      </div>
+                   
+                </div>  
+    
+
+
+
+              </div>
+          </div>
+      </div>
+    </div>
+
+
+    
+  
+
+
+
+
+    <script src="pop-menu.js"></script>
+    <script src="clock.js"></script>
+    <script src="renderer.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+  </body>
+</body>
+</html>

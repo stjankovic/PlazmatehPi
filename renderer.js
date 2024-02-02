@@ -1,19 +1,36 @@
-// Access ipcRenderer via the electron object exposed by the preload script
 const { ipcRenderer } = window.electron;
 
-// Adding event listener to the exit button
+///////////////////////////////////////////////////////////////////////////////
+//EXIT
 document.getElementById('exitButton').addEventListener('click', () => {
     // Send a message to the main process to request app exit
     ipcRenderer.send('exit-app');
 });
+///////////////////////////////////////////////////////////////////////////////
 
-document.getElementById('toggle-dark-mode').addEventListener('click', async () => {
-    const isDarkMode = await window.darkMode.toggle()
-    document.getElementById('theme-source').innerHTML = isDarkMode ? 'Dark' : 'Light'
-})
-  
-  document.getElementById('reset-to-system').addEventListener('click', async () => {
-    await window.darkMode.system()
-    document.getElementById('theme-source').innerHTML = 'System'
-})
+///////////////////////////////////////////////////////////////////////////////
+//STRANA 1
+document.getElementById('changeStrana1').addEventListener('click', () => {
+    ipcRenderer.send('loadStrana1');
+});
+//STRANA 2
+document.getElementById('changeStrana2').addEventListener('click', () => {
+    ipcRenderer.send('loadStrana2');
+});
+//STRANA 3
+document.getElementById('changeStrana3').addEventListener('click', () => {
+    ipcRenderer.send('loadStrana3');
+});
+//STRANA 41
+document.getElementById('changeStrana4').addEventListener('click', () => {
+    ipcRenderer.send('loadStrana4');
+});
+//STRANA 5
+document.getElementById('changeStrana5').addEventListener('click', () => {
+    ipcRenderer.send('loadStrana5');
+});
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+//UPDATE PARAMETERS
 

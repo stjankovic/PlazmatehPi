@@ -20,8 +20,10 @@
         </div>
         
         <a class="navbar-brand" id="cur-dis">
-          <img src="Plazmateh.png" alt="Logo"  height="40" draggable="false">
+          <img src="Plazmateh.png" alt="Logo"  height="25" draggable="false">
         </a>
+
+        <div id="clock"></div>
     </nav>
 
     
@@ -31,11 +33,45 @@
             <svg onclick="closeHiddenWindow();" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
             </svg>
-        </div>
-        <button id="exitButton">Exit App</button>
+        </div> <!--fixed-item-->
+        <button id="exitButton" type="button" class="btn btn-danger">Exit Application</button><br>
+        <div class="">Plazmateh IPC</div>
+        <div class="">ver 01.00.</div> 
+       
     </div>
 
+    <div id="mainview" class="container-fluid">
+      <div id="rrow" class="row">
+          <div class="col-sm-1" style="background-color: rgb(248,249,250);">
+              <!-- MENU -->
+              <ul class="list-group border-0 py-1">
+                  <li id="changeStrana1" class="list-group-item border-0 py-1 my-1">PERFORATION</li>
+                  <li id="changeStrana2" class="list-group-item border-0 py-1 my-1">PARAMETERS</li>
+                  <li id="changeStrana3" class="list-group-item border-0 py-1 my-1">RECIPES</li>
+                  <li id="changeStrana4" class="list-group-item border-0 py-1 my-1">SETTINGS</li>
+                  <li id="changeStrana5" class="list-group-item border-0 py-1 my-1">LICENSE</li>
+              </ul>
+          </div>
+          <div class="col-sm-11" style="background-color: #cccccc;">
+              <div id="mainMachine" class="container mt-5 mb-5 pb-5 text-center">
+                  <!-- GLAVNI PRIKAZ -->
+                  <div id="cont" class="container-fluid rounded" style="background-color: #f8f9fa;">
+                      <h2 class="h2">POLE PERFORATION MACHINE 2</h2>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+
+    
+  
+
+
+
+
     <script src="pop-menu.js"></script>
+    <script src="clock.js"></script>
     <script src="renderer.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     
