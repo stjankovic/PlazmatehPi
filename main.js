@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import readLastRecord from './readLastRecord.js'; // Import the readLastRecord function
+import readLastRecord from './scripts/readLastRecord.js'; // Import the readLastRecord function
 
 // Get the current file path and directory path
 const __filename = fileURLToPath(import.meta.url);
@@ -33,51 +33,38 @@ async function createWindow() {
     });
 
     // Load the HTML file into the window and pass lastRecord as a query parameter
-    win.loadFile(join(__dirname, 'Strana1.html'), {
-      query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }
-    });
+    win.loadFile(join(__dirname, 'pages', 'machine.html'), { query: { lastRecord: JSON.stringify(lastRecord)} });
 
     // Hide the menu bar
     win.setMenuBarVisibility(false);
 
     // Prevent default action for Alt key press
-    win.on('keydown', (event) => {
-      if (event.altKey) {
-        event.preventDefault();
-      }
-    });
-  } catch (error) {
-    console.error('Error creating window:', error);
-    // Handle error
-  }
+    win.on('keydown', (event) => { if (event.altKey) { event.preventDefault() }}); } catch (error) { console.error('Error creating window:', error) }
 }
 
 // Create the window when Electron is ready
 app.whenReady().then(createWindow);
 
 // Handle activation event
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
-});
+app.on('activate', () => { if (BrowserWindow.getAllWindows().length === 0) { createWindow() }});
 
 // Handle exit-app event
-ipcMain.on('exit-app', () => {
-  app.quit();
-});
+ipcMain.on('exit-app', () => { app.quit() });
 
 // Handle window-all-closed event
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
+app.on('window-all-closed', () => { if (process.platform !== 'darwin') { app.quit() }});
 
-// Handle loadStranaX events
-ipcMain.on('loadStrana1', () => win.loadFile(join(__dirname, 'Strana1.html'), {query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
-ipcMain.on('loadStrana2', () => win.loadFile(join(__dirname, 'Strana2.html'), {query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
-ipcMain.on('loadStrana3', () => win.loadFile(join(__dirname, 'Strana3.html'), {query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
-ipcMain.on('loadStrana4', () => win.loadFile(join(__dirname, 'Strana4.html'), {query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
-ipcMain.on('loadStrana5', () => win.loadFile(join(__dirname, 'Strana5.html'), {query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//>> PAGES
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ipcMain.on('loadMachine', () => win.loadFile(join(__dirname, 'pages', 'machine.html'), { query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
+ipcMain.on('loadParameters', () => win.loadFile(join(__dirname, 'pages', 'parameters.html'), { query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
+ipcMain.on('loadAlarms', () => win.loadFile(join(__dirname, 'pages', 'alarms.html'), { query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
+ipcMain.on('loadLimits', () => win.loadFile(join(__dirname, 'pages', 'limits.html'), { query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
+ipcMain.on('loadRecipes', () => win.loadFile(join(__dirname, 'pages', 'recipes.html'), { query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
+ipcMain.on('loadNetwork', () => win.loadFile(join(__dirname, 'pages', 'network.html'), { query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
+ipcMain.on('loadDevices', () => win.loadFile(join(__dirname, 'pages', 'devices.html'), { query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
+ipcMain.on('loadSettings', () => win.loadFile(join(__dirname, 'pages', 'settings.html'), { query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
+ipcMain.on('loadLicense', () => win.loadFile(join(__dirname, 'pages', 'license.html'), { query: { lastRecord: JSON.stringify(lastRecord), Stefan: 'Stefan' }}));
