@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Plazmateh IPC</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/png">
     <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
@@ -22,7 +22,7 @@
         </div>
 
         <a class="navbar-brand" id="cur-dis">
-            <img src="../Plazmateh.png" alt="Logo" height="25" draggable="false">
+            <img src="../img/Plazmateh.png" alt="Logo" height="25" draggable="false">
         </a>
 
         <div id="clock"></div>
@@ -44,10 +44,9 @@
 
     </div>
 
-    <!-- DISPLAY -->
     <div id="mainview" class="container-fluid">
         <div id="rrow" class="row">
-            <div class="col-md-1" style="background-color: rgb(225, 225, 225);">
+            <div class="col-md-1" style="background-color: #d4d4d4;">
                 <!-- MENU -->
                 <ul class="list-group border-0 py-1">
                     <li id="changeMachine" class="list-group-item border-0 py-1 my-1 fs-6">MACHINE</li>
@@ -60,48 +59,49 @@
                     <li id="changeSettings" class="list-group-item border-0 py-1 my-1 fs-6">SETTINGS</li>
                     <li id="changeLicense" class="list-group-item border-0 py-1 my-1 fs-6">LICENSE</li>
                 </ul>
+                
             </div>
-            <div class="col-sm-10" style="background-color: #cccccc;">
+
+            <div class="col-sm-10" style="background-color: #d4d4d4;">
                 <div id="mainMachine" class="container mt-5 mb-5 pb-5 text-center">
                     <!-- GLAVNI PRIKAZ -->
 
                     <div class="container">
-                        License
+
+                        <div id="mainParam" class="container rounded" style="background-color: #f8f9fa; padding: 20px; text-align: center;">
+                            <h1>License</h1>
+                            <input type="text" id="licenseInput" class="form-control form-control-lg" style="width: 300px; margin: auto; text-align: left;" placeholder="xxxx-xxxx-xxxx-xxxx" oninput="updatePlaceholder(event)">
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function updatePlaceholder(event) {
+        const input = event.target;
+        const value = input.value;
 
-    <script src="../Plazmateh.png"></script>
-    <script src="../clock.js"></script>
-    <script src="../renderer.js"></script>
+        // Generate placeholder with 'x' characters replaced based on input length
+        let placeholder = 'xxxx-xxxx-xxxx-xxxx';
+        placeholder = placeholder.slice(0, value.length);
+
+        // If there are remaining 'x' characters, add remaining 'x' characters
+        if (value.length < 16) {
+            const remainingX = 16 - value.length;
+            placeholder += '-'.repeat(remainingX);
+        }
+
+        // Update the input placeholder with the modified value
+        input.setAttribute('placeholder', placeholder);
+    }
+
+    </script>
+    <script src="../scripts/pop-menu.js"></script>
+    <script src="../scripts/clock.js"></script>
+    <script src="../scripts/renderer.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        window.onload = function() {
-          var tableRows = document.getElementById("cycle-table").getElementsByTagName("tr");
-          var middleRow = Math.floor(tableRows.length / 2); // Get the index of the middle row
-          tableRows[middleRow].style.backgroundColor = "yellow"; // Apply background color to the middle row
-        };
-    </script>
-    <script>
-        // Get the query parameters from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-
-        // Get the value of the 'lastRecord' parameter and parse it as JSON
-        const lastRecordParam = urlParams.get('lastRecord');
-        const lastRecord = JSON.parse(lastRecordParam);
-
-        // Update parameter names
-        for (let i = 1; i <= 20; i++) {
-            document.getElementById(`parameterNameDisplay_${i}`).textContent = lastRecord[`parameterName_${String(i).padStart(2, '0')}`];
-        }
-
-        // Update parameter values
-        for (let i = 1; i <= 20; i++) {
-            document.getElementById(`parameterValueDisplay_${i}`).textContent = lastRecord[`parameterVal_${String(i).padStart(2, '0')}`];
-        }
-    </script>
 
 </body>
 

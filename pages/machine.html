@@ -71,16 +71,16 @@
                         <div id="mainParam" class="container rounded" style="background-color: #f8f9fa; padding: 20px;">
                             <div class="row justify-content-center">
                                 <div class="col-md-2 text-left">
-                                    <p id="parameterNameDisplay_1"></p>
-                                    <p id="parameterNameDisplay_2"></p>
-                                    <p id="parameterNameDisplay_3"></p>
-                                    <p id="parameterNameDisplay_4"></p>
-                                    <p id="parameterNameDisplay_5"></p>
-                                    <p id="parameterNameDisplay_6"></p>
-                                    <p id="parameterNameDisplay_7"></p>
-                                    <p id="parameterNameDisplay_8"></p>
-                                    <p id="parameterNameDisplay_9"></p>
-                                    <p id="parameterNameDisplay_10"></p>
+                                    <p id="parameterNameDisplay_1" style="text-align: left;"></p>
+                                    <p id="parameterNameDisplay_2" style="text-align: left;"></p>
+                                    <p id="parameterNameDisplay_3" style="text-align: left;"></p>
+                                    <p id="parameterNameDisplay_4" style="text-align: left;"></p>
+                                    <p id="parameterNameDisplay_5" style="text-align: left;"></p>
+                                    <p id="parameterNameDisplay_6" style="text-align: left;"></p>
+                                    <p id="parameterNameDisplay_7" style="text-align: left;"></p>
+                                    <p id="parameterNameDisplay_8" style="text-align: left;"></p>
+                                    <p id="parameterNameDisplay_9" style="text-align: left;"></p>
+                                    <p id="parameterNameDisplay_10" style="text-align: left;"></p>
                                 </div>
                                 <div class="col-md-1 text-right">
                                     <p id="parameterValueDisplay_1"></p>
@@ -97,19 +97,7 @@
                                 <div class="col-md-6 image-column">
                                     <img src="../img/machine.png" alt="Machine" class="img-fluid">
                                 </div>
-                                <div class="col-md-2 text-left">
-                                    <p id="parameterNameDisplay_11"></p>
-                                    <p id="parameterNameDisplay_12"></p>
-                                    <p id="parameterNameDisplay_13"></p>
-                                    <p id="parameterNameDisplay_14"></p>
-                                    <p id="parameterNameDisplay_15"></p>
-                                    <p id="parameterNameDisplay_16"></p>
-                                    <p id="parameterNameDisplay_17"></p>
-                                    <p id="parameterNameDisplay_18"></p>
-                                    <p id="parameterNameDisplay_19"></p>
-                                    <p id="parameterNameDisplay_20"></p>
-                                </div>
-                                <div class="col-md-1 text-right">
+                                <div class="col-md-1 text-left">
                                     <p id="parameterValueDisplay_11"></p>
                                     <p id="parameterValueDisplay_12"></p>
                                     <p id="parameterValueDisplay_13"></p>
@@ -121,50 +109,104 @@
                                     <p id="parameterValueDisplay_19"></p>
                                     <p id="parameterValueDisplay_20"></p>
                                 </div>
+                                <div class="col-md-2">
+                                    <p id="parameterNameDisplay_11" class="align-right"></p>
+                                    <p id="parameterNameDisplay_12" class="align-right"></p>
+                                    <p id="parameterNameDisplay_13" class="align-right"></p>
+                                    <p id="parameterNameDisplay_14" class="align-right"></p>
+                                    <p id="parameterNameDisplay_15" class="align-right"></p>
+                                    <p id="parameterNameDisplay_16" class="align-right"></p>
+                                    <p id="parameterNameDisplay_17" class="align-right"></p>
+                                    <p id="parameterNameDisplay_18" class="align-right"></p>
+                                    <p id="parameterNameDisplay_19" class="align-right"></p>
+                                    <p id="parameterNameDisplay_20" class="align-right"></p>
+                                </div>
+                                
                             </div>
                         </div>
 
-                        <div id="cycle-table" class="container rounded mt-4" style="background-color: #f8f9fa; padding: 20px;">
+                        <div id="cycle-table" class="container rounded mt-4" style="background-color: #f8f9fa; padding-bottom: 10px; padding-top: 30px;">
                             <div class="row justify-content-center">
                                 <div class="col-md-12"> <!-- Use full width for the table -->
-                                    <table id="cycle-table" class="table table-bordered">
+                                    <table id="cycle-table" class="table table-bordered table-sm" style="font-size: 0.9rem;"> <!-- Add the 'table-sm' class to make the table compact -->
                                         <tbody>
                                             <tr>
-                                                <td style="width: 100px;">Step 1</td>
+                                                <td style="width: 80px;">Step 1</td>
+                                                <td style="width: 150px;">Perforation</td>
                                                 <td>Machine Setup State</td>
-                                                <td>STATUS: DONE</td>
-                                            </tr>
-                                            <tr class="highlighted-row"> <!-- Add the class to highlight this row -->
-                                                <td class="highlighted-row">Step 2</td>
-                                                <td class="highlighted-row">Loading in place</td>
-                                                <td class="highlighted-row">STATUS: RUNNING</td>
+                                                <td style="width: 250px;">Status: DONE</td>
+                                                <td style="width: 150px;">Alarm: False</td> <!-- New column -->
                                             </tr>
                                             <tr>
-                                                <td>Step 3</td>
-                                                <td>Gripping</td>
-                                                <td>STATUS: PENDING</td>
+                                                <td style="width: 80px;">Step 2</td>
+                                                <td style="width: 150px;">Perforation</td>
+                                                <td>Machine Setup State</td>
+                                                <td style="width: 250px;">Status: DONE</td>
+                                                <td style="width: 150px;">Alarm: False</td> <!-- New column -->
                                             </tr>
+                                            <tr>
+                                                <td style="width: 80px;">Step 3</td>
+                                                <td style="width: 150px;">Assembly</td>
+                                                <td>Machine Setup State</td>
+                                                <td style="width: 250px;">Status: DONE</td>
+                                                <td style="width: 150px;">Alarm: False</td> <!-- New column -->
+                                            </tr>
+                                            <tr class="highlighted-row">
+                                                <td class="highlighted-row">Step 4</td>
+                                                <td class="highlighted-row">Loader</td>
+                                                <td class="highlighted-row">Loading in place</td>
+                                                <td class="highlighted-row">Status: RUNNING</td>
+                                                <td class="highlighted-row">Alarm: False</td> <!-- New column -->
+                                            </tr>
+                                            <tr>
+                                                <td>Step 5</td>
+                                                <td>Gripper</td>
+                                                <td>Gripping</td>
+                                                <td>Status: PENDING</td>
+                                                <td>Alarm: False</td> <!-- New column -->
+                                            </tr>
+                                            <tr>
+                                                <td>Step 6</td>
+                                                <td>Gripper</td>
+                                                <td>Gripping</td>
+                                                <td>Status: PENDING</td>
+                                                <td>Alarm: False</td> <!-- New column -->
+                                            </tr>
+                                            <tr>
+                                                <td>Step 7</td>
+                                                <td>Gripper</td>
+                                                <td>Gripping</td>
+                                                <td>Status: PENDING</td>
+                                                <td>Alarm: False</td> <!-- New column -->
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        
+                        
 
                         <div class="container rounded mt-4" style="background-color: #f8f9fa; padding: 20px;">
                             <div class="row justify-content-center">
-                                <div class="col-md-10"> <!-- Divide the container into 10 equal parts -->
+                                <div class="col-md-12"> <!-- Divide the container into 10 equal parts -->
                                     <div class="row justify-content-center"> <!-- Center the buttons -->
                                         <div class="col-md-2">
                                             <button type="button" class="btn btn-success custom-btn btn-lg">START</button>
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-secondary custom-btn btn-md ml-5">Cycle Start</button> <!-- Increased margin to ml-5 -->
+                                            <button type="button" class="btn btn-success custom-btn btn-md ml-5">Cycle Start</button> <!-- Increased margin to ml-5 -->
                                         </div>
                                         <div class="col-md-2">
                                             <button type="button" class="btn btn-secondary custom-btn btn-md ml-5">Set Speed</button> <!-- Increased margin to ml-5 -->
                                         </div>
                                         <div class="col-md-2">
                                             <button type="button" class="btn btn-secondary custom-btn btn-md ml-5">Set Temperature</button> <!-- Increased margin to ml-5 -->
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-secondary custom-btn btn-md ml-5" style="color: white !important">Set Spindle</button> <!-- Increased margin to ml-5 -->
                                         </div>
                                         <div class="col-md-2">
                                             <button type="button" class="btn btn-warning custom-btn btn-md ml-5" style="color: black !important">SAFETY RESET</button> <!-- Increased margin to ml-5 -->
@@ -175,16 +217,19 @@
                                             <button type="button" class="btn btn-danger custom-btn btn-lg">STOP</button>
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-secondary custom-btn btn-md ml-5">Cycle Stop</button> <!-- Increased margin to ml-5 -->
+                                            <button type="button" class="btn btn-danger custom-btn btn-md ml-9" style="color: white !important">Cycle Stop</button> <!-- Increased margin to ml-5 -->
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-danger custom-btn btn-md ml-5">ESTOP</button> <!-- Increased margin to ml-5 -->
+                                            <button type="button" class="btn btn-danger custom-btn btn-md ml-9">ESTOP</button> <!-- Increased margin to ml-5 -->
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-info custom-btn btn-md ml-5" style="color: black !important">ALARM LIST</button> <!-- Increased margin to ml-5 -->
+                                            <button type="button" class="btn btn-info custom-btn btn-md ml-9" style="color: black !important">ALARM LIST</button> <!-- Increased margin to ml-5 -->
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-warning custom-btn btn-md ml-5"style="color: black !important">ALARM RESET</button> <!-- Increased margin to ml-5 -->
+                                            <button type="button" class="btn btn-danger custom-btn btn-md ml-9"style="color: white !important">Horn</button> <!-- Increased margin to ml-5 -->
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-warning custom-btn btn-md ml-8"style="color: black !important">ALARM RESET</button> <!-- Increased margin to ml-5 -->
                                         </div>
                                     </div>
                                 </div>

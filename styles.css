@@ -162,3 +162,27 @@ li:hover {
     background-color: #d7d7d7 !important;
     color: white;
 }
+ /* Custom CSS to adjust row height */
+#cycle-table tr {
+    height: 10px !important;/* Adjust the height of the rows */
+}
+
+.align-right {
+    text-align: right;
+}
+
+.drive-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.bi-usb-drive {
+    margin-right: 8px; /* Adjust spacing between icon and text */
+}
+
+/* Add this to your CSS file or style block */
+.drive-name {
+    font-size: 12px; /* Adjust the font size as needed */
+}
