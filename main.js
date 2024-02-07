@@ -82,7 +82,7 @@ app.on('window-all-closed', () => {
   }
 });
 
-// Load different pages based on IPC messages
+// STRANICE
 ipcMain.on('loadMachine', () =>     win.loadFile(join(__dirname, 'pages', 'machine.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
 ipcMain.on('loadParameters', () =>  win.loadFile(join(__dirname, 'pages', 'parameters.html'),  { query: { lastRecord: JSON.stringify(lastRecord) }}));
 ipcMain.on('loadAlarms', () =>      win.loadFile(join(__dirname, 'pages', 'alarms.html'),      { query: { lastRecord: JSON.stringify(lastRecord) }}));

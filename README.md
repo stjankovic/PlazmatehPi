@@ -23,6 +23,7 @@
 ##
 
 - [Opis](#Opis)
+- [Status](#Status)
 - [Prvo Pokretanje Windows 10/11](#startup)
 - [Deployment](#deployment)
 - [Usage](#usage)
@@ -36,7 +37,69 @@
 
 Electron JS aplikacija za Windows i Debian Linux (Raspberry Pi)
 
-## 🏁 Prvo Pokretanje Windows 10/11 <a name = "startup"></a>
+Aplikacija radi na linux (Windows) sistemu.
+Korisnik preko **Visual Studio Code** kompajluje instancu programa za testiranje na Windowsu.
+
+Za pokretanje na Linux potrebno je da se [**electron-builder**](https://www.electron.build/index.html) da napravi permanentu instancu.
+
+
+Glavni proces se pokrece iz main.js
+Main.js povlaci sve potrebne fajlove za sistemske, hmi i plc funcionalnosti i generise glavni proces.
+U data.json se nalaze parametri koji ce biti promenljivi. 
+Poslednji unos iz data.json ce se prikazati kao trenutni na ekranu i koristiti kao i varijable.
+
+Ideja je da se napravi plc.js dokument gde ce korisnik moci da pise program 
+
+Aplikacija je u izradi...
+
+Primer kako bi program izgledao:
+
+```javascript
+var Gpio = require('onoff').Gpio; //biblioteka za IO
+var LED = new Gpio(4, 'out'); //PIN 4 Output
+var pushButton = new Gpio(17, 'in', 'both'); //pin 17 input
+
+//funckija 
+pushButton.watch(function (err, value) { // ako se dugme stisne
+  if (err) { //if an error
+    console.error('There was an error', err); //poruka u konzoli
+  return;
+  }
+  LED.writeSync(value); //postavka za ilaz
+});
+
+//funkcija kad se gasi program
+function unexportOnClose() { 
+  LED.writeSync(0); // Ugasi LED
+  LED.unexport(); // Oslobodi Pin
+  pushButton.unexport(); // Oslobodi Pin
+};
+
+process.on('SIGINT', unexportOnClose); //Funkcija kad se program ugasi
+```
+
+## Status <a name = "Status"></a>
+
+Prikaz u kom statusu su funkcionalnosti aplikacije.
+
+- <b>HMI funkcionalnost:</b>
+  - 0&nbsp;&nbsp;  % - Alarms
+  - 40 % - Devices
+  - 20 % - License
+  - 0&nbsp;&nbsp;  % - Limits
+  - 80 % - Machine
+  - 0&nbsp;&nbsp; % - Network
+  - 10 % - Parameters
+  - 0&nbsp;&nbsp;  % - Recipes
+  - 5&nbsp;&nbsp;  % - Settings
+- <b>PLC funkcionalnost:</b>
+  - 100  % - Raspberry Pi IO instalacija (test okruzenje)
+  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - Raspberry Pi IO instalacija (rpi okruzenje)
+  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - Digitalni izlazi/ulazi
+  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - Analogni izlazi/ulazi (potreban ext module)
+
+
+## 🏁 Postavljanje Windows 10/11 <a name = "startup"></a>
 
 Za postavljanje radnom okruzenja potrebno je instalirati nekoliko programa.
 
