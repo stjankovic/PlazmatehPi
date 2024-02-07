@@ -63,39 +63,13 @@
             </div>
 
             <div class="col-sm-10" style="background-color: #d4d4d4;">
-                <div id="mainMachine" class="container mt-5 mb-5 pb-5 text-center">
-                    <!-- GLAVNI PRIKAZ -->
-
-                    <div class="container">
-
-                        <div id="mainParam" class="container rounded" style="background-color: #f8f9fa; padding: 20px; text-align: center;">
-                            <h1>License</h1>
-                            <input type="text" id="licenseInput" class="form-control form-control-lg" style="width: 300px; margin: auto; text-align: left;" placeholder="xxxx-xxxx-xxxx-xxxx" oninput="updatePlaceholder(event)">
-                        </div>
-
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
     <script>
-        function updatePlaceholder(event) {
-        const input = event.target;
-        const value = input.value;
-
-        // Generate placeholder with 'x' characters replaced based on input length
-        let placeholder = 'xxxx-xxxx-xxxx-xxxx';
-        placeholder = placeholder.slice(0, value.length);
-
-        // If there are remaining 'x' characters, add remaining 'x' characters
-        if (value.length < 16) {
-            const remainingX = 16 - value.length;
-            placeholder += '-'.repeat(remainingX);
-        }
-
-        // Update the input placeholder with the modified value
-        input.setAttribute('placeholder', placeholder);
-    }
+       
+  
 
     </script>
     <script src="../scripts/pop-menu.js"></script>
