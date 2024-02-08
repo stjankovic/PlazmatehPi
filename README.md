@@ -4,7 +4,6 @@
  <img height=30px src="https://www.plazmateh.rs/img/default/Logo1.png" alt="Project logo"></a>
 </p>
 
-<h1 align="center">Plazmateh IPC</h1>
 
 ---
 
