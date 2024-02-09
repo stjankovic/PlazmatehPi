@@ -61,21 +61,86 @@
                 </ul>
                 
             </div>
-
             <div class="col-sm-10" style="background-color: #d4d4d4;">
-                
+                <div id="mainMachine" class="container mt-5 mb-5 pb-5 text-center">
+                    <!-- GLAVNI PRIKAZ -->
+
+                    <div class="container">
+
+
+                        
+                        
+                        
+                        
+                        <div class="container rounded mt-4" style="background-color: #f8f9fa; padding: 20px;">
+                            <div class="row justify-content-center pt-4 mt-2"> <!-- Center the buttons -->
+                                <div class="col-md-12 text-center">
+                                    <h1>License</h1>
+                                    <br><br>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-6"> <!-- Adjust column width to center the input field -->
+                                    <div class="row justify-content-center"> <!-- Center the input field -->
+                                        <div class="col-md-6">
+                                            <br>
+                                            <input id="licenseInput" type="text" class="form-control text-center" placeholder="AB12-3C45-DE67-FG89" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center pt-4 mt-2"> <!-- Center the license validity text -->
+                                        <div class="col-md-12 text-center">
+                                            <p>License valid until:</p> 
+                                            <p>15-10-2026 08:00</p>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center pt-4 mt-2"> <!-- Center the buttons -->
+                                        <div class="col-md-12 text-center">
+                                            <button type="button" class="btn btn-primary white" disabled>Update</button>
+                                            <button type="button" class="btn btn-secondary white">Check</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <script>
-       
-  
 
-    </script>
     <script src="../scripts/pop-menu.js"></script>
     <script src="../scripts/clock.js"></script>
     <script src="../scripts/renderer.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.onload = function() {
+          var tableRows = document.getElementById("cycle-table").getElementsByTagName("tr");
+          var middleRow = Math.floor(tableRows.length / 2); // Get the index of the middle row
+          tableRows[middleRow].style.backgroundColor = "yellow"; // Apply background color to the middle row
+        };
+    </script>
+    <script>
+        // Get the query parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Get the value of the 'lastRecord' parameter and parse it as JSON
+        const lastRecordParam = urlParams.get('lastRecord');
+        const lastRecord = JSON.parse(lastRecordParam);
+
+        // Update parameter names
+        for (let i = 1; i <= 20; i++) {
+            document.getElementById(`parameterNameDisplay_${i}`).textContent = lastRecord[`parameterName_${String(i).padStart(2, '0')}`];
+        }
+
+        // Update parameter values
+        for (let i = 1; i <= 20; i++) {
+            document.getElementById(`parameterValueDisplay_${i}`).textContent = lastRecord[`parameterVal_${String(i).padStart(2, '0')}`];
+        }
+    </script>
 
 </body>
 

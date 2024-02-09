@@ -1,9 +1,9 @@
 // Importing functions
-import { app, BrowserWindow, ipcMain } from 'electron';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import readLastRecord from './scripts/readLastRecord.js'; // Import the readLastRecord function
-import { listUSBDrives } from './usbUtils.js';
+import { app, BrowserWindow, ipcMain }  from 'electron';
+import { fileURLToPath }                from 'url';
+import { dirname, join }                from 'path';
+import readLastRecord                   from './scripts/readLastRecord.js'; 
+import { listUSBDrives }                from './usbUtils.js';
 
 // Get the current file path and directory path
 const __filename = fileURLToPath(import.meta.url);
@@ -49,10 +49,10 @@ async function createWindow() {
     // Hide the menu bar
     win.setMenuBarVisibility(false);
 
-    // Prevent default action for Alt+F4
-    win.on('close', (event) => {
-      event.preventDefault();
-    });
+    // // Prevent default action for Alt+F4
+    // win.on('close', (event) => {
+    //   event.preventDefault();
+    // });
 
   } catch (error) {
     console.error('Error creating window:', error);
@@ -71,7 +71,7 @@ app.on('activate', () => {
 
 // Handle exit-app event
 ipcMain.on('exit-app', () => {
-  console.log("Received exit-app message from renderer process. Quitting the application.");
+  // console.log("Received exit-app message from renderer process. Quitting the application.");
   app.quit();
 });
 
@@ -81,6 +81,8 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
+
 
 // STRANICE
 ipcMain.on('loadMachine', () =>     win.loadFile(join(__dirname, 'pages', 'machine.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));

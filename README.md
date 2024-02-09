@@ -74,8 +74,12 @@ Prikaz u kom statusu su funkcionalnosti aplikacije.
 
 - <b>HMI funkcionalnost:</b>
   - 0&nbsp;&nbsp;  % - Alarms
-  - 40 % - Devices
-  - 20 % - License
+  - 60 % - Devices
+      - Design 100%
+      - Function 20%
+  - 75 % - License
+      - Design 100%
+      - Function 50%
   - 0&nbsp;&nbsp;  % - Limits
   - 80 % - Machine
     -  0 %  - Grafici
