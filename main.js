@@ -4,23 +4,34 @@ import { fileURLToPath }                from 'url';
 import { dirname, join }                from 'path';
 import readLastRecord                   from './scripts/readLastRecord.js'; 
 import { listUSBDrives }                from './usbUtils.js';
+import resolver          from './scripts/license_resolver.js';
 
 // Get the current file path and directory path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 let win; // Declare a variable for the window
-let lastRecord;
-let drives;
+
+let lastRecord; //Last Record for Parameters
+
+let drives; //List of Drives
+
+let license_activity; //Current loaded License
+
 
 // Function to create the Electron window
 async function createWindow() {
   try {
+    //Reads current license
+    license_activity = await resolver();
+
     // Read the last record from the data file
     lastRecord = await readLastRecord();
 
     // Call the listUSBDrives function
     drives = await listUSBDrives();
+
+    
 
     // Create a new browser window
     win = new BrowserWindow({
@@ -36,15 +47,27 @@ async function createWindow() {
       menuBarVisible: false, // Hide menu bar
       backgroundColor: '#3e3e3e' // Set background color
     });
-    
-    // Load the HTML file into the window and pass lastRecord and drives as query parameters
-    win.loadFile(join(__dirname, 'pages', 'machine.html'), { 
+
+    if(license_activity.license_status == 'active') {
       
-      query: { 
-        lastRecord: JSON.stringify(lastRecord),
-        drives: JSON.stringify(drives)
-      } 
-    });
+      // Load the HTML file into the window and pass lastRecord and drives as query parameters
+      win.loadFile(join(__dirname, 'pages', 'machine.html'), { 
+        
+        query: { 
+          lastRecord: JSON.stringify(lastRecord)
+        } 
+      });
+    } else {
+       
+      // Load the HTML file into the window and pass lastRecord and drives as query parameters
+      win.loadFile(join(__dirname, 'pages', 'license.html'), { 
+        
+        query: { 
+          license_activity: JSON.stringify(license_activity)
+        } 
+      });
+    }
+    
 
     // Hide the menu bar
     win.setMenuBarVisibility(false);
@@ -85,12 +108,23 @@ app.on('window-all-closed', () => {
 
 
 // STRANICE
-ipcMain.on('loadMachine', () =>     win.loadFile(join(__dirname, 'pages', 'machine.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
-ipcMain.on('loadParameters', () =>  win.loadFile(join(__dirname, 'pages', 'parameters.html'),  { query: { lastRecord: JSON.stringify(lastRecord) }}));
-ipcMain.on('loadAlarms', () =>      win.loadFile(join(__dirname, 'pages', 'alarms.html'),      { query: { lastRecord: JSON.stringify(lastRecord) }}));
-ipcMain.on('loadLimits', () =>      win.loadFile(join(__dirname, 'pages', 'limits.html'),      { query: { lastRecord: JSON.stringify(lastRecord) }}));
-ipcMain.on('loadRecipes', () =>     win.loadFile(join(__dirname, 'pages', 'recipes.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
-ipcMain.on('loadNetwork', () =>     win.loadFile(join(__dirname, 'pages', 'network.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
-ipcMain.on('loadDevices', () =>     win.loadFile(join(__dirname, 'pages', 'devices.html'),     { query: { drives: JSON.stringify(drives) }}));
-ipcMain.on('loadSettings', () =>    win.loadFile(join(__dirname, 'pages', 'settings.html'),    { query: { lastRecord: JSON.stringify(lastRecord) }}));
-ipcMain.on('loadLicense', () =>     win.loadFile(join(__dirname, 'pages', 'license.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
+license_activity = await resolver();
+
+if(license_activity.license_status == 'active') {
+  
+  ipcMain.on('loadMachine', () =>     win.loadFile(join(__dirname, 'pages', 'machine.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
+  ipcMain.on('loadParameters', () =>  win.loadFile(join(__dirname, 'pages', 'parameters.html'),  { query: { lastRecord: JSON.stringify(lastRecord) }}));
+  ipcMain.on('loadAlarms', () =>      win.loadFile(join(__dirname, 'pages', 'alarms.html'),      { query: { lastRecord: JSON.stringify(lastRecord) }}));
+  ipcMain.on('loadLimits', () =>      win.loadFile(join(__dirname, 'pages', 'limits.html'),      { query: { lastRecord: JSON.stringify(lastRecord) }}));
+  ipcMain.on('loadRecipes', () =>     win.loadFile(join(__dirname, 'pages', 'recipes.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
+  ipcMain.on('loadNetwork', () =>     win.loadFile(join(__dirname, 'pages', 'network.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
+  ipcMain.on('loadDevices', () =>     win.loadFile(join(__dirname, 'pages', 'devices.html'),     { query: { drives: JSON.stringify(drives) }}));
+  ipcMain.on('loadSettings', () =>    win.loadFile(join(__dirname, 'pages', 'settings.html'),    { query: { lastRecord: JSON.stringify(lastRecord) }}));
+  ipcMain.on('loadLicense', () =>     win.loadFile(join(__dirname, 'pages', 'license.html'),     { query: { license_activity: JSON.stringify(license_activity) }}));
+  license_activity = {}; 
+  
+}
+else {
+  ipcMain.on('loadLicense', () =>     win.loadFile(join(__dirname, 'pages', 'license.html'),     { query: { license_activity: JSON.stringify(license_activity) }}));
+  license_activity = {}; 
+}
