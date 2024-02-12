@@ -106,7 +106,7 @@ Prikaz u kom statusu su funkcionalnosti aplikacije.
     - 90% - Dinamicki prikaz podataka 
     - :red_circle: - Mogucnost da korisnik upravlja podacima
     - 50% - License, korisnik da moze definisati sa administrator nalogom trajanje license
-      - :ok: - Automatsko prosledjivanje korisnika na stranice u slucaju isteka ili trajanje license
+      - :white_check_mark: - Automatsko prosledjivanje korisnika na stranice u slucaju isteka ili trajanje license
       - :red_circle: - Unos nove license korosnika
     - :red_circle: - Settings, sistemska podesavanja, jezik ...
    - PLC
