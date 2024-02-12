@@ -73,10 +73,10 @@ process.on('SIGINT', unexportOnClose); //Funkcija kad se program ugasi
 Prikaz u kom statusu su funkcionalnosti aplikacije.
 
 - <b>HMI funkcionalnost:</b>
-  - 0&nbsp;&nbsp;  % - Alarms
+  - :red_circle: - Alarms
   - 60 % - Devices
       - :white_check_mark: - Design
-      - Function 20%
+      - :red_circle: - Function 
   - 75 % - License
       - :white_check_mark: - Design 
       - :white_check_mark: - Function 
