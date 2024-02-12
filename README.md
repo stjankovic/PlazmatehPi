@@ -93,7 +93,7 @@ Prikaz u kom statusu su funkcionalnosti aplikacije.
   - 5&nbsp;&nbsp;  % - Settings
     
 - <b>PLC funkcionalnost:</b>
-  - <span style="color:lightgreen;">100  % - Raspberry Pi IO instalacija (test okruzenje - Hyper V)</span>
+  - <span style="color:green;">100  % - Raspberry Pi IO instalacija (test okruzenje - Hyper V)</span>
   - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - Raspberry Pi IO instalacija (Raspberry okruzenje)
   - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - Digitalni izlazi/ulazi
   - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - Analogni izlazi/ulazi (potreban ext module)
@@ -106,7 +106,7 @@ Prikaz u kom statusu su funkcionalnosti aplikacije.
     - 90% - Dinamicki prikaz podataka 
     - 0% - Mogucnost da korisnik upravlja podacima
     - 50% - License, korisnik da moze definisati sa administrator nalogom trajanje license
-      - <span style="color:lightgreen;"> 100% - Automatsko prosledjivanje korisnika na stranice u slucaju isteka ili trajanje license</span>
+      - <span style="color:green;"> 100% - Automatsko prosledjivanje korisnika na stranice u slucaju isteka ili trajanje license</span>
       - 0%   - Unos nove license korosnika
     - 0% - Settings, sistemska podesavanja, jezik ...
    - PLC
