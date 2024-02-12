@@ -106,7 +106,7 @@ Prikaz u kom statusu su funkcionalnosti aplikacije.
     - 90% - Dinamicki prikaz podataka 
     - 0% - Mogucnost da korisnik upravlja podacima
     - 50% - License, korisnik da moze definisati sa administrator nalogom trajanje license
-      - <span style="color:green;"> 100% - Automatsko prosledjivanje korisnika na stranice u slucaju isteka ili trajanje license</span>
+      - :ok: - Automatsko prosledjivanje korisnika na stranice u slucaju isteka ili trajanje license
       - 0%   - Unos nove license korosnika
     - 0% - Settings, sistemska podesavanja, jezik ...
    - PLC
