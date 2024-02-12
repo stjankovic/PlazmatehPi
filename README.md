@@ -105,7 +105,9 @@ Prikaz u kom statusu su funkcionalnosti aplikacije.
   - HMI
     - 90% - Dinamicki prikaz podataka 
     - 0% - Mogucnost da korisnik upravlja podacima
-    - 0% - License, korisnik da moze definisati sa administrator nalogom trajanje license
+    - 50% - License, korisnik da moze definisati sa administrator nalogom trajanje license
+      - 100% - Automatsko prosledjivanje korisnika na stranice u slucaju isteka ili trajanje license (Latest Commit)
+      - 0%   - Unos nove license korosnika
     - 0% - Settings, sistemska podesavanja, jezik ...
    - PLC
     - 0% - Postavke za olaksano i izolovano pisanje programa bez interakcija sa sistemskim okruzenjem   

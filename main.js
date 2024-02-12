@@ -1,10 +1,11 @@
 // Importing functions
-import { app, BrowserWindow, ipcMain }  from 'electron';
-import { fileURLToPath }                from 'url';
-import { dirname, join }                from 'path';
-import readLastRecord                   from './scripts/readLastRecord.js'; 
-import { listUSBDrives }                from './usbUtils.js';
-import resolver          from './scripts/license_resolver.js';
+import { app, BrowserWindow, ipcMain }                            from 'electron';
+import { fileURLToPath }                                          from 'url';
+import { dirname, join }                                          from 'path';
+import readLastRecord                                             from './scripts/readLastRecord.js'; 
+import { listUSBDrives }                                          from './usbUtils.js';
+import { getCurrentActiveLicense }       from './scripts/license_resolver.js';
+import moment                                                     from 'moment'
 
 // Get the current file path and directory path
 const __filename = fileURLToPath(import.meta.url);
@@ -23,7 +24,7 @@ let license_activity; //Current loaded License
 async function createWindow() {
   try {
     //Reads current license
-    license_activity = await resolver();
+    license_activity = await getCurrentActiveLicense();
 
     // Read the last record from the data file
     lastRecord = await readLastRecord();
@@ -108,7 +109,7 @@ app.on('window-all-closed', () => {
 
 
 // STRANICE
-license_activity = await resolver();
+license_activity = await getCurrentActiveLicense();
 
 if(license_activity.license_status == 'active') {
   

@@ -1,34 +1,22 @@
 [
-    {
-      "license": "AB12-1215-EF36-GH72",
-      "date": "2024-02-11T22:55:50.820Z",
-      "status": "active"
-    },
-    {
-      "license": "AB13-GH78-7SM5-CDH4",
-      "date": "2024-05-11T22:47:30.385Z",
-      "status": "not-actived"
-    },
-    {
-      "license": "AB14-CD34-EF56-GH7H",
-      "date": "2024-08-11T22:47:30.385Z",
-      "status": "not-actived"
-    },
-    {
-      "license": "7S15-1G34-E256-G43H",
-      "date": "Permanent",
-      "status": "not-actived"
-    }
-
+  {
+    "license": "AB12-1215-EF36-GH72",
+    "date": "2024-02-12T16:06:31.565Z",
+    "status": "expired"
+  },
+  {
+    "license": "AB13-GH78-7SM5-CDH4",
+    "date": "2024-02-12T16:06:31.567Z",
+    "status": "not-actived"
+  },
+  {
+    "license": "AB14-CD34-EF56-GH7H",
+    "date": "2024-02-12T16:06:31.567Z",
+    "status": "not-actived"
+  },
+  {
+    "license": "7S15-1G34-E256-G43H",
+    "date": "2024-02-12T16:06:31.567Z",
+    "status": "not-actived"
+  }
 ]
-
-
-
-
-
-
-
-
-
-
-
