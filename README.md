@@ -75,44 +75,44 @@ Prikaz u kom statusu su funkcionalnosti aplikacije.
 - <b>HMI funkcionalnost:</b>
   - 0&nbsp;&nbsp;  % - Alarms
   - 60 % - Devices
-      - Design 100%
+      - :white_check_mark: - Design
       - Function 20%
   - 75 % - License
-      - Design 100%
-      - Function 50%
-  - 0&nbsp;&nbsp;  % - Limits
+      - :white_check_mark: - Design 
+      - :white_check_mark: - Function 
+  - :red_circle: - Limits
   - 80 % - Machine
-    -  0 %  - Grafici
+    -  :red_circle: - Grafici
     -  30%  - Button
     -  30%  - Toggle
     -  30%  - Input Field
     -  30%  - Indication
-  - 0&nbsp;&nbsp; % - Network
-  - 10 % - Parameters
-  - 0&nbsp;&nbsp;  % - Recipes
-  - 5&nbsp;&nbsp;  % - Settings
+  - :red_circle: - Network
+  - :red_circle: - Parameters
+  - :red_circle: - Recipes
+  - :red_circle: - Settings
     
 - <b>PLC funkcionalnost:</b>
-  - <span style="color:green;">100  % - Raspberry Pi IO instalacija (test okruzenje - Hyper V)</span>
-  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - Raspberry Pi IO instalacija (Raspberry okruzenje)
-  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - Digitalni izlazi/ulazi
-  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - Analogni izlazi/ulazi (potreban ext module)
-  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - USB Komunikacija
-  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - UART Komunikacija
-  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - SPI Komunikacija
-  - 0&nbsp;&nbsp;&nbsp;&nbsp;  % - I2C Komunikacija
+  - :white_check_mark: - Raspberry Pi IO instalacija (test okruzenje - Hyper V)
+  - :red_circle: - Raspberry Pi IO instalacija (Raspberry okruzenje)
+  - :red_circle:  % - Digitalni izlazi/ulazi
+  - :red_circle:  % - Analogni izlazi/ulazi (potreban ext module)
+  - :red_circle:  % - USB Komunikacija
+  - :red_circle:  % - UART Komunikacija
+  - :red_circle:  % - SPI Komunikacija
+  - :red_circle:  % - I2C Komunikacija
 - <b>Sistemske funkcionalnosti:</b>
   - HMI
     - 90% - Dinamicki prikaz podataka 
-    - 0% - Mogucnost da korisnik upravlja podacima
+    - :red_circle: - Mogucnost da korisnik upravlja podacima
     - 50% - License, korisnik da moze definisati sa administrator nalogom trajanje license
       - :ok: - Automatsko prosledjivanje korisnika na stranice u slucaju isteka ili trajanje license
-      - 0%   - Unos nove license korosnika
-    - 0% - Settings, sistemska podesavanja, jezik ...
+      - :red_circle: - Unos nove license korosnika
+    - :red_circle: - Settings, sistemska podesavanja, jezik ...
    - PLC
-    - 0% - Postavke za olaksano i izolovano pisanje programa bez interakcija sa sistemskim okruzenjem   
-    - 0% - Postavke za protokolske komunikacije I2C, SPI itd...   
-    - 0% - Postavke za protokolske komunikacije I2C, SPI itd...   
+    - :red_circle: - Postavke za olaksano i izolovano pisanje programa bez interakcija sa sistemskim okruzenjem   
+    - :red_circle: - Postavke za protokolske komunikacije I2C, SPI itd...   
+    - :red_circle: - Postavke za protokolske komunikacije I2C, SPI itd...   
 ##  Postavljanje Windows 10/11 <a name = "startup"></a>
 
 Za postavljanje radnom okruzenja potrebno je instalirati nekoliko programa. (Instalacije na linku)
