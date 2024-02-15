@@ -1,45 +1,44 @@
-import { promises as fsPromises }   from 'fs';
-import moment                       from 'moment'
+import { promises as fsPromises } from 'fs';
+import moment from 'moment';
 
+//Check the validity of the currently active license
 async function getCurrentActiveLicense() {
     try {
-
-        let license, count = 0;
         const licenseData = await fsPromises.readFile('./licenses.json', 'utf8');
         const licenses = JSON.parse(licenseData);
+        let license;
+        let count = 0;
 
         licenses.forEach(lic => {
-            if(lic.status == 'active') {
+            if (lic.status === 'active') {
                 let licenseDT = moment(lic.date);
                 let currentDT = moment();
-                if(licenseDT.isAfter(currentDT)) {
+                if (licenseDT.isAfter(currentDT)) {
                     license = {
-                        license:        lic.license,
-                        license_date:   lic.date,
+                        license: lic.license,
+                        license_date: lic.date,
                         license_status: lic.status
-                    } 
+                    };
                 } else {
-                    count++
-                    lic.status = 'expired'
+                    count++;
+                    lic.status = 'expired';
                     license = {
-                        license:        lic.license,
-                        license_date:   lic.date,
+                        license: lic.license,
+                        license_date: lic.date,
                         license_status: lic.status
-                    } 
-                    
+                    };
                 }
             } else {
                 count++;
             }
-            
         });
 
-        if(count == licenses.length) {
+        if (count === licenses.length) {
             license = {
-                license:        'Expired',
-                license_date:   'NA',
+                license: 'Expired',
+                license_date: 'NA',
                 license_status: 'expired'
-            } 
+            };
         }
 
         await fsPromises.writeFile('./licenses.json', JSON.stringify(licenses, null, 2));
@@ -47,27 +46,37 @@ async function getCurrentActiveLicense() {
 
     } catch (error) {
         console.error('Error with getCurrentActiveLicense', error);
-        throw error; 
+        throw error;
     }
 }
+// Authenticate the license
+async function setCurrentActiveLicense(userLicense) {
+    try {
+        const licenseData = await fsPromises.readFile('./licenses.json', 'utf8');
+        const licenses = JSON.parse(licenseData);
 
-// async function updateDataJsonWithMoment() {
-//     try {
-//         // Read the contents of ./licenses.json'
-//         const rawData = await fsPromises.readFile('./licenses.json', 'utf-8');
-//         const licenses = JSON.parse(rawData);
+        let licenseIsAcquired = false;
 
-//         // Update each element of the array with the current date and time using Moment.js
-//         licenses.forEach((lic) => {
-//             lic.date = moment().toISOString();
-//         });
+        licenses.forEach(lic => {
+            if (userLicense === lic.license && lic.status === 'not-active') {
+                lic.status = 'active';
+                licenseIsAcquired = true;
+            }
+        });
 
+        if (licenseIsAcquired) {
+            await fsPromises.writeFile('./licenses.json', JSON.stringify(licenses, null, 2));
+            console.log('License Updated OK');
+            return 5; // License successfully activated
+        } else {
+            return 4; // License not found or already expired
+        }
+        
+    } catch (error) {
+        console.error('Error with setCurrentActiveLicense', error);
+        throw error;
+    }
     
-//         await fsPromises.writeFile('./licenses.json', JSON.stringify(licenses, null, 2));
-//     } catch (error) {
-//         console.error("Error updating data.json:", error);
-//     }
-// }
+}
 
-export { getCurrentActiveLicense };
-
+export { getCurrentActiveLicense, setCurrentActiveLicense };

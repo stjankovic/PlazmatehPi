@@ -136,7 +136,7 @@
             const license_date = document.getElementById('lic_date');
             license_date.innerHTML = license_parsed.license_date;
         }
-        else if (license_parsed.license_status == 'inactive'){
+        else if (license_parsed.license_status == 'not-active'){
 
             const license_field = document.getElementById('lic_license');
             license_field.placeholder = license_parsed.license;
@@ -152,11 +152,32 @@
             license_date.innerHTML = license_parsed.license_date;
         } 
         else {
+            const license_field = document.getElementById('lic_license');
+            license_field.placeholder = 'New license needed...';
+            license_field.removeAttribute('disabled');
+            lic_update.removeAttribute('disabled');
+            lic_check.removeAttribute('disabled');
+            
             const license_status = document.getElementById('lic_status');
             license_status.innerHTML = 'License is currently inactive - Please contact PLAZMATEH';
-            console.log('Error validating license: Please contact - stefankovic31@gmail.com')
+            
+            //lic_date
+            const license_date = document.getElementById('lic_date');
+            license_date.innerHTML = 'Please enter new license'
 
         }
+    </script>
+    <script>
+        document.getElementById('lic_update').addEventListener('click', async () => {
+            const licenseData = document.getElementById('lic_license').value;
+            try {
+                await ipcRenderer.invoke('set-active-license', licenseData);
+                alert('License set successfully!');
+            } catch (error) {
+                console.error('Error setting license:', error);
+                alert('Error setting license. See console for details.');
+            }
+        });
     </script>
 
 </body>

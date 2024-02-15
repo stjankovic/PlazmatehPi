@@ -4,8 +4,9 @@ import { fileURLToPath }                                          from 'url';
 import { dirname, join }                                          from 'path';
 import readLastRecord                                             from './scripts/readLastRecord.js'; 
 import { listUSBDrives }                                          from './usbUtils.js';
-import { getCurrentActiveLicense }       from './scripts/license_resolver.js';
+import { getCurrentActiveLicense, setCurrentActiveLicense }       from './scripts/license_resolver.js';
 import moment                                                     from 'moment'
+
 
 // Get the current file path and directory path
 const __filename = fileURLToPath(import.meta.url);
@@ -83,6 +84,19 @@ async function createWindow() {
   }
 }
 
+ipcMain.handle('set-active-license', async (event, licenseData) => {
+  try {
+      await setCurrentActiveLicense(licenseData);
+      app.relaunch(); // Relaunch the application
+      app.quit(); // Quit the current instance of the application
+      return true;
+
+
+  } catch (error) {
+      throw new Error('Failed to set active license: ' + error.message);
+  }
+});
+
 // Create the window when Electron is ready
 app.whenReady().then(createWindow);
 
@@ -92,6 +106,8 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+
 
 // Handle exit-app event
 ipcMain.on('exit-app', () => {
