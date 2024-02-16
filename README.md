@@ -25,7 +25,14 @@
 
 ##  Opis <a name = "Opis"></a>
 
+### Machine Stranica <a name = "Opis"></a>
+![alt text](https://github.com/stjankovic/PlazmatehPi/blob/master/img/machine.jpg?raw=true)
 
+### Parameters Stranica <a name = "Opis"></a>
+![alt text](https://github.com/stjankovic/PlazmatehPi/blob/master/img/parameters.jpg?raw=true)
+
+### License Stranica <a name = "Opis"></a>
+![alt text](https://github.com/stjankovic/PlazmatehPi/blob/master/img/license.jpg?raw=true)
 
 Electron JS aplikacija za Windows i Debian Linux (Raspberry Pi)
 
