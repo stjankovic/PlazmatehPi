@@ -172,10 +172,10 @@
             const licenseData = document.getElementById('lic_license').value;
             try {
                 await ipcRenderer.invoke('set-active-license', licenseData);
-                alert('License set successfully!');
+                ipcRenderer.send('set-active-license');
             } catch (error) {
                 console.error('Error setting license:', error);
-                alert('Error setting license. See console for details.');
+                
             }
         });
     </script>

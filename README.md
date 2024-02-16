@@ -25,6 +25,8 @@
 
 ##  Opis <a name = "Opis"></a>
 
+
+
 Electron JS aplikacija za Windows i Debian Linux (Raspberry Pi)
 
 Aplikacija radi na linux (Windows) sistemu.
@@ -88,7 +90,9 @@ Prikaz u kom statusu su funkcionalnosti aplikacije.
     -  30%  - Input Field
     -  30%  - Indication
   - :red_circle: - Network
-  - :red_circle: - Parameters
+  - 75% - Parameters
+    - :white_check_mark: - Design
+    - 50% - Functionality 
   - :red_circle: - Recipes
   - :red_circle: - Settings
     

@@ -40,6 +40,26 @@
     "parameterVal_17":  "-",
     "parameterVal_18":  "-",
     "parameterVal_19":  "-",
-    "parameterVal_20":  "-"
+    "parameterVal_20":  "-",
+    "state_locked_01":  true,
+    "state_locked_02":  true,
+    "state_locked_03":  true,
+    "state_locked_04":  true,
+    "state_locked_05":  false,
+    "state_locked_06":  false,
+    "state_locked_07":  true,
+    "state_locked_08":  true,
+    "state_locked_09":  false,
+    "state_locked_10":  true,
+    "state_locked_11":  true,
+    "state_locked_12":  false,
+    "state_locked_13":  true,
+    "state_locked_14":  false,
+    "state_locked_15":  false,
+    "state_locked_16":  false,
+    "state_locked_17":  true,
+    "state_locked_18":  true,
+    "state_locked_19":  true,
+    "state_locked_20":  false
   }
 ]

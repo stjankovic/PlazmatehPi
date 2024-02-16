@@ -1,8 +1,10 @@
+const PlazmatehIpcUID = '2f97b8e1-94d9-4e54-a1af-6b0e33b1d9c2'
+
 // Importing functions
 import { app, BrowserWindow, ipcMain }                            from 'electron';
 import { fileURLToPath }                                          from 'url';
 import { dirname, join }                                          from 'path';
-import readLastRecord                                             from './scripts/readLastRecord.js'; 
+import readParameters                                             from './scripts/readParameters.js'; 
 import { listUSBDrives }                                          from './usbUtils.js';
 import { getCurrentActiveLicense, setCurrentActiveLicense }       from './scripts/license_resolver.js';
 import moment                                                     from 'moment'
@@ -14,12 +16,20 @@ const __dirname = dirname(__filename);
 
 let win; // Declare a variable for the window
 
-let lastRecord; //Last Record for Parameters
+let readCurrentParameters; //Last Record for Parameters
 
 let drives; //List of Drives
 
 let license_activity; //Current loaded License
 
+
+
+console.log(`--------------------------------------------------------------- `)
+console.log(`---       Plazmateh Industrial Personal Computer            --- `)
+console.log(`    -------------------------------------------------------     `)
+console.log(`---  UID:             ${PlazmatehIpcUID}  ---`)
+console.log(`---  App Started:     ${moment()}     --- `)
+console.log(`--------------------------------------------------------------- `)
 
 // Function to create the Electron window
 async function createWindow() {
@@ -28,7 +38,7 @@ async function createWindow() {
     license_activity = await getCurrentActiveLicense();
 
     // Read the last record from the data file
-    lastRecord = await readLastRecord();
+    readCurrentParameters = await readParameters();
 
     // Call the listUSBDrives function
     drives = await listUSBDrives();
@@ -52,16 +62,16 @@ async function createWindow() {
 
     if(license_activity.license_status == 'active') {
       
-      // Load the HTML file into the window and pass lastRecord and drives as query parameters
+      // Load the HTML file into the window and pass readCurrentParameters and drives as query parameters
       win.loadFile(join(__dirname, 'pages', 'machine.html'), { 
         
         query: { 
-          lastRecord: JSON.stringify(lastRecord)
+          readCurrentParameters: JSON.stringify(readCurrentParameters)
         } 
       });
     } else {
        
-      // Load the HTML file into the window and pass lastRecord and drives as query parameters
+      // Load the HTML file into the window and pass readCurrentParameters and drives as query parameters
       win.loadFile(join(__dirname, 'pages', 'license.html'), { 
         
         query: { 
@@ -74,11 +84,6 @@ async function createWindow() {
     // Hide the menu bar
     win.setMenuBarVisibility(false);
 
-    // // Prevent default action for Alt+F4
-    // win.on('close', (event) => {
-    //   event.preventDefault();
-    // });
-
   } catch (error) {
     console.error('Error creating window:', error);
   }
@@ -87,10 +92,17 @@ async function createWindow() {
 ipcMain.handle('set-active-license', async (event, licenseData) => {
   try {
       await setCurrentActiveLicense(licenseData);
-      app.relaunch(); // Relaunch the application
-      app.quit(); // Quit the current instance of the application
-      return true;
 
+      license_activity = await getCurrentActiveLicense();
+      ipcMain.on('loadMachine', () =>     win.loadFile(join(__dirname, 'pages', 'machine.html'),     { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+      ipcMain.on('loadParameters', () =>  win.loadFile(join(__dirname, 'pages', 'parameters.html'),  { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+      ipcMain.on('loadAlarms', () =>      win.loadFile(join(__dirname, 'pages', 'alarms.html'),      { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+      ipcMain.on('loadLimits', () =>      win.loadFile(join(__dirname, 'pages', 'limits.html'),      { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+      ipcMain.on('loadRecipes', () =>     win.loadFile(join(__dirname, 'pages', 'recipes.html'),     { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+      ipcMain.on('loadNetwork', () =>     win.loadFile(join(__dirname, 'pages', 'network.html'),     { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+      ipcMain.on('loadDevices', () =>     win.loadFile(join(__dirname, 'pages', 'devices.html'),     { query: { drives: JSON.stringify(drives) }}));
+      ipcMain.on('loadSettings', () =>    win.loadFile(join(__dirname, 'pages', 'settings.html'),    { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+      ipcMain.on('loadLicense', () =>     win.loadFile(join(__dirname, 'pages', 'license.html'),     { query: { license_activity: JSON.stringify(license_activity) }}));
 
   } catch (error) {
       throw new Error('Failed to set active license: ' + error.message);
@@ -99,14 +111,6 @@ ipcMain.handle('set-active-license', async (event, licenseData) => {
 
 // Create the window when Electron is ready
 app.whenReady().then(createWindow);
-
-// Handle activation event
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
-});
-
 
 
 // Handle exit-app event
@@ -128,20 +132,21 @@ app.on('window-all-closed', () => {
 license_activity = await getCurrentActiveLicense();
 
 if(license_activity.license_status == 'active') {
-  
-  ipcMain.on('loadMachine', () =>     win.loadFile(join(__dirname, 'pages', 'machine.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
-  ipcMain.on('loadParameters', () =>  win.loadFile(join(__dirname, 'pages', 'parameters.html'),  { query: { lastRecord: JSON.stringify(lastRecord) }}));
-  ipcMain.on('loadAlarms', () =>      win.loadFile(join(__dirname, 'pages', 'alarms.html'),      { query: { lastRecord: JSON.stringify(lastRecord) }}));
-  ipcMain.on('loadLimits', () =>      win.loadFile(join(__dirname, 'pages', 'limits.html'),      { query: { lastRecord: JSON.stringify(lastRecord) }}));
-  ipcMain.on('loadRecipes', () =>     win.loadFile(join(__dirname, 'pages', 'recipes.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
-  ipcMain.on('loadNetwork', () =>     win.loadFile(join(__dirname, 'pages', 'network.html'),     { query: { lastRecord: JSON.stringify(lastRecord) }}));
+  license_activity = await getCurrentActiveLicense();
+  ipcMain.on('loadMachine', () =>     win.loadFile(join(__dirname, 'pages', 'machine.html'),     { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+  ipcMain.on('loadParameters', () =>  win.loadFile(join(__dirname, 'pages', 'parameters.html'),  { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+  ipcMain.on('loadAlarms', () =>      win.loadFile(join(__dirname, 'pages', 'alarms.html'),      { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+  ipcMain.on('loadLimits', () =>      win.loadFile(join(__dirname, 'pages', 'limits.html'),      { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+  ipcMain.on('loadRecipes', () =>     win.loadFile(join(__dirname, 'pages', 'recipes.html'),     { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
+  ipcMain.on('loadNetwork', () =>     win.loadFile(join(__dirname, 'pages', 'network.html'),     { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
   ipcMain.on('loadDevices', () =>     win.loadFile(join(__dirname, 'pages', 'devices.html'),     { query: { drives: JSON.stringify(drives) }}));
-  ipcMain.on('loadSettings', () =>    win.loadFile(join(__dirname, 'pages', 'settings.html'),    { query: { lastRecord: JSON.stringify(lastRecord) }}));
+  ipcMain.on('loadSettings', () =>    win.loadFile(join(__dirname, 'pages', 'settings.html'),    { query: { readCurrentParameters: JSON.stringify(readCurrentParameters) }}));
   ipcMain.on('loadLicense', () =>     win.loadFile(join(__dirname, 'pages', 'license.html'),     { query: { license_activity: JSON.stringify(license_activity) }}));
   license_activity = {}; 
   
 }
 else {
+  license_activity = await getCurrentActiveLicense();
   ipcMain.on('loadLicense', () =>     win.loadFile(join(__dirname, 'pages', 'license.html'),     { query: { license_activity: JSON.stringify(license_activity) }}));
   license_activity = {}; 
 }

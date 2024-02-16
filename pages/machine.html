@@ -257,18 +257,18 @@
         // Get the query parameters from the URL
         const urlParams = new URLSearchParams(window.location.search);
 
-        // Get the value of the 'lastRecord' parameter and parse it as JSON
-        const lastRecordParam = urlParams.get('lastRecord');
-        const lastRecord = JSON.parse(lastRecordParam);
+        // Get the value of the 'readCurrentParameters' parameter and parse it as JSON
+        const readCurrentParametersParam = urlParams.get('readCurrentParameters');
+        const readCurrentParameters = JSON.parse(readCurrentParametersParam);
 
         // Update parameter names
         for (let i = 1; i <= 20; i++) {
-            document.getElementById(`parameterNameDisplay_${i}`).textContent = lastRecord[`parameterName_${String(i).padStart(2, '0')}`];
+            document.getElementById(`parameterNameDisplay_${i}`).textContent = readCurrentParameters[`parameterName_${String(i).padStart(2, '0')}`];
         }
 
         // Update parameter values
         for (let i = 1; i <= 20; i++) {
-            document.getElementById(`parameterValueDisplay_${i}`).textContent = lastRecord[`parameterVal_${String(i).padStart(2, '0')}`];
+            document.getElementById(`parameterValueDisplay_${i}`).textContent = readCurrentParameters[`parameterVal_${String(i).padStart(2, '0')}`];
         }
     </script>
 

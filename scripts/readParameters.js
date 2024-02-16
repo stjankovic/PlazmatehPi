@@ -1,7 +1,7 @@
 import { promises as fsPromises } from 'fs';
 import { join } from 'path';
 
-async function readLastRecord() {
+async function readParameters() {
     try {
         const jsonData = await fsPromises.readFile('./data.json', 'utf8');
         const records = JSON.parse(jsonData);
@@ -13,4 +13,4 @@ async function readLastRecord() {
     }
 }
 
-export default readLastRecord;
+export default readParameters;
