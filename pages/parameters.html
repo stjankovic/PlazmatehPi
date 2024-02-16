@@ -67,37 +67,52 @@
                     <!-- GLAVNI PRIKAZ -->
 
                     <div class="container">
-
-
-                        <div id="mainParam" class="container rounded" style="background-color: #f8f9fa; padding: 20px;">
-                           <h1>Parameters</h1>
-
-                           <div id="cycle-table" class="container rounded mt-4" style="background-color: #f8f9fa; padding-bottom: 10px; padding-top: 30px;">
-                            <div class="row justify-content-center">
-                                <div class="col-md-12"> <!-- Use full width for the table -->
-                                    <table id="cycle-table" class="table table-bordered table-sm" style="font-size: 0.9rem;">
-                                        <thead>
-                                            <tr>
-                                                <th>Parameter Name</th>
-                                                <th>Parameter Value</th>
-                                                <th>Update Parameter</th>
-                                                <th>Delete Parameter</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                           
-                                        </tbody>
-                                    </table>
+                        <div id="mainParam" class="container rounded" style="background-color: #f8f9fa; padding: 20px; padding-bottom: 0px;">
+                            <h4>Parameters</h4> <br>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination pagination-sm justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div id="cycle-table" class="container rounded mt-4" style="background-color: #f8f9fa; padding-bottom: 10px; padding-top: 30px;">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <table id="cycle-table" class="table table-bordered table-sm" style="font-size: 0.9rem;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Parameter Name</th>
+                                                    <th>Parameter Value</th>
+                                                    <th>Lock Parameter</th>
+                                                    <th>Edit Parameter</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Populate this section with parameter data -->
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
-
-                        
-
                     </div>
+                    
+
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -136,24 +151,38 @@
                 <tr>
                     <td>${item.parameterName}</td>
                     <td>${item.parameterValue}</td>
-                    <td style="text-align: center;">
-                        <button type="button" class="btn btn-danger btn-sm edit-btn" style="width: 200px; padding-bottom: 5px !important; padding-top: 0px !important" data-index="${index}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16">
-                            <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2"/>
-                            </svg>
-                        </button>
+                    <td style="width: 150px;">
+                        ${item.stateLocked ?
+                            `<button type="button" class="btn btn-danger btn-sm edit-btn" style="color: white !important; width: 100px; padding-bottom: 5px !important; padding-top: 0px !important" data-index="${index}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                                    <path fill="black" d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                                </svg>
+                            </button>` :
+                            `<button type="button" class="btn btn-success btn-sm edit-btn" style="color: white !important; width: 100px; padding-bottom: 5px !important; padding-top: 0px !important" data-index="${index}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-unlock-fill" viewBox="0 0 16 16">
+                                    <path fill="black" d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2"/>
+                                </svg>
+                            </button>`
+                        }
                     </td>
-                    <td style="text-align: center;">
-                        <button type="button" class="btn btn-secondary btn-sm" style="width: 200px; padding-bottom: 5px !important; padding-top: 0px !important">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
-                            </svg>
-                        </button>
+                    <td style="width: 150px;">
+                        ${item.stateLocked ?
+                            `<button disabled type="button" class="btn btn-danger btn-sm " style="color: white !important; width: 100px; padding-bottom: 5px !important; padding-top: 0px !important" data-index="${index}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                    <path fill="black" d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                                </svg>
+                            </button>` :
+                            `<button type="button" class="btn btn-success btn-sm" style="color: white !important; width: 100px; padding-bottom: 5px !important; padding-top: 0px !important" data-index="${index}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                    <path fill="black" d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                                </svg>
+                            </button>`
+                        }
                     </td>
                 </tr>
             `).join('');
         }
-    
+            
         // Get the URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const readCurrentParametersParam = urlParams.get('readCurrentParameters');
@@ -170,7 +199,7 @@
                     const parameterValue = readCurrentParameters[parameterValueKey];
                     // Determine the state of the checkbox based on the value of state_locked_01
                     const stateLockedKey = `state_locked_${parameterNumber}`;
-                    const stateLocked = readCurrentParameters[stateLockedKey] === 'true'; // Convert to boolean
+                    const stateLocked = readCurrentParameters[stateLockedKey]; // Convert to boolean
                     data.push({ parameterName, parameterValue, stateLocked });
                 }
             }
@@ -214,3 +243,12 @@
 </body>
 
 </html>
+
+
+<td style="text-align: center;">
+    <button type="button" class="btn btn-danger btn-sm edit-btn" style="width: 200px; padding-bottom: 5px !important; padding-top: 0px !important" data-index="${index}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+        </svg>
+    </button>
+</td>
